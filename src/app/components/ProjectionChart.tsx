@@ -10,6 +10,7 @@ import {
 } from "chart.js";
 import { PensionData } from "./PensionForm";
 import { calculateRetirementBalance } from "@/utils/calculations";
+import { JOB_START_AGE, END_AGE } from "@/utils/constants";
 
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
 
@@ -29,17 +30,15 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     retirementAge,
     employerContribution,
     personalContribution,
-    annualIncome,
+    annualIncome
   );
-
-  // Job start age is 25 and end age is 81
-  const jobStartAge = 25
-  const endAge = 81; 
-  
-  const totalYears = endAge - jobStartAge + 1;
+  const totalYears = END_AGE - JOB_START_AGE + 1;
 
   //  Labels for each year from the start age to the age of 81
-  const labels = Array.from({ length: totalYears }, (_, i) => i + jobStartAge);
+  const labels = Array.from(
+    { length: totalYears },
+    (_, i) => i + JOB_START_AGE
+  );
 
   const chartData = {
     labels: labels,
