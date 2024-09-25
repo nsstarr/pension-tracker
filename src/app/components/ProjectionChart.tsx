@@ -32,6 +32,13 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     personalContribution,
     annualIncome
   );
+
+  // Projected pension pot at retirement age
+  const projectedPensionPot =
+    balanceOverTime[balanceOverTime.length - (END_AGE - retirementAge + 1)];
+
+  const desiredPensionPot = annualIncome * (END_AGE - retirementAge);
+
   const totalYears = END_AGE - JOB_START_AGE + 1;
 
   //  Labels for each year from the start age to the age of 81
@@ -55,6 +62,17 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
 
   return (
     <div className="mt-10 w-full max-w-3xl">
+      <div className="mb-6 text-center">
+        <h2 className="text-xl font-bold">Pension Summary</h2>
+        <p>
+          <strong>Desired Pension Pot: </strong>£
+          {desiredPensionPot.toLocaleString()}
+        </p>
+        <p>
+          <strong>Projected Pension Pot at Retirement: </strong>£
+          {projectedPensionPot.toLocaleString()}
+        </p>
+      </div>
       <Line data={chartData} />
     </div>
   );
