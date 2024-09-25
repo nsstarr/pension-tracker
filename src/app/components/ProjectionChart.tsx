@@ -23,20 +23,19 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     employerContribution,
     personalContribution,
     retirementAge,
-    currentAge,
   } = data;
 
-  // Call the calculateRetirementBalance function
   const balanceOverTime = calculateRetirementBalance(
     retirementAge,
     employerContribution,
     personalContribution,
     annualIncome,
-    currentAge
   );
 
-  const jobStartAge = currentAge;
+  // Job start age is 25 and end age is 81
+  const jobStartAge = 25
   const endAge = 81; 
+  
   const totalYears = endAge - jobStartAge + 1;
 
   //  Labels for each year from the start age to the age of 81

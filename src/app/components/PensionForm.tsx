@@ -6,7 +6,6 @@ export interface PensionData {
   employerContribution: number;
   personalContribution: number;
   retirementAge: number;
-  currentAge: number;
 }
 
 interface PensionFormProps {
@@ -19,7 +18,6 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
     employerContribution: 0,
     personalContribution: 0,
     retirementAge: 65,
-    currentAge: 30,
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
