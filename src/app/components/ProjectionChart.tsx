@@ -61,9 +61,9 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
   };
 
   return (
-    <div className="mt-10 w-full max-w-3xl">
+    <div className="w-full max-w-3xl rounded-lg border border-gray-200 bg-white p-5 shadow md:p-6 dark:border-gray-700 dark:bg-gray-800">
       <div className="mb-6 text-center">
-        <h2 className="text-xl font-bold">Pension Summary</h2>
+        <h2 className="py-3 text-2xl font-bold">Pension Summary</h2>
         <p>
           <strong>Desired Pension Pot: </strong>£
           {desiredPensionPot.toLocaleString()}
