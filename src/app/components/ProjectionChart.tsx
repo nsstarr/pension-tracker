@@ -24,13 +24,25 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     employerContribution,
     personalContribution,
     retirementAge,
+    currentPensionPot, 
   } = data;
 
+  // Total balance over time considering all contributions
   const balanceOverTime = calculateBalance(
     retirementAge,
     employerContribution,
     personalContribution,
-    annualIncome
+    annualIncome,
+    currentPensionPot // Include the current pension pot in the calculation
+  );
+
+  // Contribution from the current pension pot alone
+  const currentPotOnlyBalanceOverTime = calculateBalance(
+    retirementAge,
+    0, // No employer contributions
+    0, // No personal contributions
+    annualIncome,
+    currentPensionPot // Include only the current pension pot
   );
 
   // Projected pension pot at retirement age
@@ -41,7 +53,7 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
 
   const totalYears = END_AGE - JOB_START_AGE + 1;
 
-  //  Labels for each year from the start age to the age of 81
+  // Labels for each year from the start age to the age of 81
   const labels = Array.from(
     { length: totalYears },
     (_, i) => i + JOB_START_AGE
@@ -55,6 +67,20 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
         data: balanceOverTime,
         fill: false,
         borderColor: "rgba(75,192,192,1)",
+        tension: 0.1,
+      },
+      {
+        label: "Current Pension Pot Contribution Over Time",
+        data: currentPotOnlyBalanceOverTime,
+        fill: false,
+        borderColor: "rgba(192,75,192,1)",
+        tension: 0.1,
+      },
+      {
+        label: "Desired Pension Pot",
+        data: Array(totalYears).fill(desiredPensionPot), 
+        fill: false,
+        borderColor: "rgba(192,75,75,1)",
         tension: 0.1,
       },
     ],
@@ -71,6 +97,10 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
         <p>
           <strong>Projected Pension Pot at Retirement: </strong>£
           {projectedPensionPot.toLocaleString()}
+        </p>
+        <p>
+          <strong>Current Pension Pot Contribution: </strong>£
+          {currentPensionPot.toLocaleString()}
         </p>
       </div>
       <Line data={chartData} />
