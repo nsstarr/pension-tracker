@@ -9,7 +9,7 @@ import {
   CategoryScale,
 } from "chart.js";
 import { PensionData } from "./PensionForm";
-import { calculateRetirementBalance } from "@/utils/calculations";
+import { calculateBalance } from "@/utils/calculateBalance";
 import { JOB_START_AGE, END_AGE } from "@/utils/constants";
 
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
@@ -26,7 +26,7 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     retirementAge,
   } = data;
 
-  const balanceOverTime = calculateRetirementBalance(
+  const balanceOverTime = calculateBalance(
     retirementAge,
     employerContribution,
     personalContribution,
