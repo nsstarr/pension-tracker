@@ -17,7 +17,7 @@ npm run test
 
 ## Live Demo
 
-You can view the live application here: [Pension Tracker Live Demo]()
+You can view the live application here: [Pension Tracker Live Demo](https://pension-tracker-73vjerx0l-anastasiastarostinas-projects.vercel.app/)
 
 ## Technologies Used
 
@@ -25,6 +25,22 @@ You can view the live application here: [Pension Tracker Live Demo]()
 - **React** (^18)
 - **Chart.js** (^4.4.4): A charting library used for visualizing data.
 - **React-Chartjs-2** (^5.2.0): A React wrapper for Chart.js.
+
+## Component Structure
+
+The Pension Tracker follows the **Atomic Design** principles by [Brad Frost](https://bradfrost.com/blog/post/atomic-web-design/). This approach organizes the components into a hierarchy of:
+
+- **Atoms**: Basic building blocks like buttons, labels, and input fields.
+- **Molecules**: Combinations of atoms working together, such as form groups.
+- **Organisms**: Groups of molecules forming distinct sections of the UI, like the form or chart components.
+- **Templates**: Page-level structures that place components together into layouts.
+- **Pages**: Specific instances of templates with actual content.
+
+This design pattern ensures a modular and maintainable structure, making it easier to extend or modify the app.
+
+## Theme Support
+
+The app supports both **light** and **dark** themes. It automatically adjusts based on the user's system preferences, providing a seamless experience whether they prefer a light or dark interface.
 
 ## Purpose
 
