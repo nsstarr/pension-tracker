@@ -1,4 +1,5 @@
 "use client";
+import { formatNumberToCommaString } from "@/utils/formatting";
 import { ChangeEvent, useState } from "react";
 
 export interface PensionData {
@@ -38,9 +39,6 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
     }));
   };
 
-  const formatNumber = (num: number) => {
-    return num.toLocaleString(); // Convert to a formatted string with commas
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +54,7 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
         <input
           type="text"
           name="annualIncome"
-          value={formatNumber(formData.annualIncome)}
+          value={formatNumberToCommaString(formData.annualIncome)}
           onChange={handleChange}
           required
           className="w-full rounded-lg border px-3 py-2 text-gray-900"
@@ -68,7 +66,7 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
         <input
           type="text"
           name="employerContribution"
-          value={formatNumber(formData.employerContribution)}
+          value={formatNumberToCommaString(formData.employerContribution)}
           onChange={handleChange}
           required
           className="w-full rounded-lg border px-3 py-2 text-gray-900"
@@ -80,7 +78,7 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
         <input
           type="text"
           name="personalContribution"
-          value={formatNumber(formData.personalContribution)}
+          value={formatNumberToCommaString(formData.personalContribution)}
           onChange={handleChange}
           required
           className="w-full rounded-lg border px-3 py-2 text-gray-900"
@@ -104,7 +102,7 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
         <input
           type="text"
           name="currentPensionPot"
-          value={formatNumber(formData.currentPensionPot)}
+          value={formatNumberToCommaString(formData.currentPensionPot)}
           onChange={handleChange}
           className="w-full rounded-lg border px-3 py-2 text-gray-900"
           placeholder="e.g., 0"
