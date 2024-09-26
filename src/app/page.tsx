@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-5 p-4 md:gap-10 lg:flex-row">
-      <section className="max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800">
+      <section className="rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800">
         <h1 className="mb-8 text-2xl font-bold">Pension Tracker</h1>
         <PensionForm onSubmit={setPensionData} />
       </section>

@@ -35,7 +35,7 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     personalContribution,
     retirementAge,
     currentPensionPot,
-  } = data;
+  } = data || {};
 
   // Total balance over time considering all contributions
   const balanceOverTime = calculateBalance(
@@ -102,15 +102,15 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
         <h2 className="py-3 text-2xl font-bold">Pension Summary</h2>
         <p>
           <strong>Desired Pension Pot: </strong>£
-          {desiredPensionPot.toLocaleString()}
+          {desiredPensionPot ? desiredPensionPot.toLocaleString() : "0"}
         </p>
         <p>
           <strong>Projected Pension Pot at Retirement: </strong>£
-          {projectedPensionPot.toLocaleString()}
+          {projectedPensionPot ? projectedPensionPot.toLocaleString() : "0"}
         </p>
         <p>
           <strong>Current Pension Pot Contribution: </strong>£
-          {currentPensionPot.toLocaleString()}
+          {currentPensionPot ? currentPensionPot.toLocaleString() : "0"}
         </p>
       </div>
       <Line data={chartData} />

@@ -51,7 +51,7 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid max-w-md gap-6">
+    <form onSubmit={handleSubmit} className="grid gap-6">
       <div>
         <label
           htmlFor="annualIncome"
