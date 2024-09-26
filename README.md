@@ -1,4 +1,3 @@
-
 ## Getting Started
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
@@ -13,6 +12,12 @@ For testing, run:
 
 ```bash
 npm run test
+```
+
+To build, run:
+
+```bash
+npm run build
 ```
 
 ## Live Demo
@@ -52,7 +57,6 @@ The Pension Tracker app allows users to:
 - Specify their desired retirement age.
 - Include any current pension pots they may already have.
 
-
 The app provides the following visualizations:
 
 - Projected Pension Pot: How much the user is expected to accumulate by their retirement age.
@@ -61,10 +65,10 @@ The app provides the following visualizations:
 - Current Pension Pot Contribution: How their current pension pot contributes to the desired pension total.
 
 Assumptions:
+
 - The user will retire at the specified age and will live until 81.
 - The user starts working at the age of 25 and maintains the same job until retirement.
 - The pension pot earns an annual interest rate of 4.9% until retirement.
-
 
 ## How to Use the Pension Tracker
 
@@ -74,15 +78,16 @@ Assumptions:
 
 ## Glossary
 
-**Pension Pot** is the total amount of money that an individual has saved or accumulated for their retirement. It comprises regular contributions made by the individual, contributions from their employer (if applicable), and any investment growth or interest earned over time.
+💰 **Pension Pot** is the total amount of money that an individual has saved or accumulated for their retirement. It comprises regular contributions made by the individual, contributions from their employer (if applicable), and any investment growth or interest earned over time.
 
-**Desired Pension Pot** is the total amount the user needs at the point of retirement to sustain their desired annual income throughout retirement.
+💰 **Desired Pension Pot** is the total amount the user needs at the point of retirement to sustain their desired annual income throughout retirement.
 
-**Projected Pension Pot** is the estimated amount of money that the user is expected to have accumulated by the time they reach their chosen retirement age.
+💰 **Projected Pension Pot** is the estimated amount of money that the user is expected to have accumulated by the time they reach their chosen retirement age.
 
-**Retirement balance** is the projected amount of money available in the user's pension pot at various stages of their retirement. It reflects how the pension pot changes over time as the user withdraws their desired annual income and potentially continues to earn interest. The retirement balance helps visualize how long the pension pot will last and whether it will be sufficient to meet the user's income needs throughout retirement.
+💰 **Retirement balance** is the projected amount of money available in the user's pension pot at various stages of their retirement. It reflects how the pension pot changes over time as the user withdraws their desired annual income and potentially continues to earn interest. The retirement balance helps visualize how long the pension pot will last and whether it will be sufficient to meet the user's income needs throughout retirement.
 
 ## What's Next
+
 - Increase Test Coverage: Improve test coverage to ensure all components and logic are well-tested.
 - Interactivity with Real-time Updates: Allow the chart to update interactively as the user inputs or changes data in the form.
 - Support for Multiple Pension Pots: Enable users to add and visualize multiple pension pots simultaneously.
@@ -90,4 +95,5 @@ Assumptions:
 - Responsive Enhancements: Fine-tune the responsive design for an even better experience across devices.
 
 ## License
+
 This project is open-source and available under the [MIT License](https://opensource.org/licenses/MIT).
