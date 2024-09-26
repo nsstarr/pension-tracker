@@ -6,6 +6,7 @@ export interface PensionData {
   employerContribution: number;
   personalContribution: number;
   retirementAge: number;
+  currentPensionPot: number;
 }
 
 interface PensionFormProps {
@@ -18,6 +19,7 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
     employerContribution: 0,
     personalContribution: 0,
     retirementAge: 65,
+    currentPensionPot: 0,
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +97,17 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
           required
           className="w-full rounded-lg border px-3 py-2 text-gray-900"
           placeholder="e.g., 65"
+        />
+      </div>
+      <div>
+        <label className="mb-2 block">Current Pension Pot</label>
+        <input
+          type="text"
+          name="currentPensionPot"
+          value={formatNumber(formData.currentPensionPot)}
+          onChange={handleChange}
+          className="w-full rounded-lg border px-3 py-2 text-gray-900"
+          placeholder="e.g., 0"
         />
       </div>
       <button

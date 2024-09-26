@@ -4,29 +4,30 @@ export function calculateRetirementBalance(
   retirementAge: number,
   employerContribution: number,
   personalContribution: number,
-  annualIncome: number
+  annualIncome: number,
+  currentPensionPot: number = 0 // 0 is default
 ): number[] {
   const INTEREST_RATE = 1.049; // 4.9% interest rate
   const yearsToRetirement = retirementAge - JOB_START_AGE;
   const monthlySavings = employerContribution + personalContribution;
 
-  let currentPensionPot = 0;
+  let totalPensionPot = currentPensionPot;
   const balanceOverTime: number[] = [];
 
   // Accumulation phase
   for (let year = 0; year < yearsToRetirement; year++) {
-    currentPensionPot += monthlySavings * 12; 
-    currentPensionPot *= INTEREST_RATE; 
-    balanceOverTime.push(currentPensionPot); 
+    totalPensionPot += monthlySavings * 12; 
+    totalPensionPot *= INTEREST_RATE; 
+    balanceOverTime.push(totalPensionPot); 
   }
 
   // Decumulation phase: Withdraw the annual income, no interest applied
   const yearsAfterRetirement = END_AGE - retirementAge;
   for (let year = 0; year <= yearsAfterRetirement; year++) {
-    balanceOverTime.push(currentPensionPot);
-    currentPensionPot -= annualIncome; // Withdraw annual income
+    balanceOverTime.push(totalPensionPot);
+    totalPensionPot -= annualIncome; // Withdraw annual income
 
-    if (currentPensionPot <= 0) {
+    if (totalPensionPot <= 0) {
       balanceOverTime.push(0);
       break;
     }
