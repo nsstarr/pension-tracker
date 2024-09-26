@@ -1,7 +1,8 @@
 "use client";
 import { formatNumberToCommaString } from "@/utils/formatting";
 import { ChangeEvent, useState } from "react";
-import Tooltip from "./Tooltip"; // Import the Tooltip component
+import Tooltip from "./molecules/Tooltip"; // Import the Tooltip component
+import Spinner from "./molecules/Spinner";
 
 export interface PensionData {
   annualIncome: number;
@@ -23,6 +24,7 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
     retirementAge: 65,
     currentPensionPot: 0,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -40,9 +42,12 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+
     onSubmit(formData);
+    setIsLoading(false);
   };
 
   return (
@@ -153,9 +158,12 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
 
       <button
         type="submit"
-        className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+        className={`flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 ${
+          isLoading ? "cursor-not-allowed" : ""
+        }`}
+        disabled={isLoading}
       >
-        Calculate
+        {isLoading ? <Spinner /> : "Calculate"}
       </button>
     </form>
   );
