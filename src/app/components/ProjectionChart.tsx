@@ -7,12 +7,22 @@ import {
   LinearScale,
   Title,
   CategoryScale,
+  Tooltip,
+  Legend,
 } from "chart.js";
 import { PensionData } from "./PensionForm";
 import { calculateBalance } from "@/utils/calculateBalance";
 import { JOB_START_AGE, END_AGE } from "@/utils/constants";
 
-ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  Title,
+  CategoryScale,
+  Tooltip,
+  Legend
+);
 
 interface ProjectionChartProps {
   data: PensionData;
@@ -24,7 +34,7 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     employerContribution,
     personalContribution,
     retirementAge,
-    currentPensionPot, 
+    currentPensionPot,
   } = data;
 
   // Total balance over time considering all contributions
@@ -63,14 +73,14 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     labels: labels,
     datasets: [
       {
-        label: "Projected Pension Pot Over Time",
+        label: "Projected Pension",
         data: balanceOverTime,
         fill: false,
         borderColor: "rgba(75,192,192,1)",
         tension: 0.1,
       },
       {
-        label: "Current Pension Pot Contribution Over Time",
+        label: "Current Pension Pot Contribution",
         data: currentPotOnlyBalanceOverTime,
         fill: false,
         borderColor: "rgba(192,75,192,1)",
@@ -78,7 +88,7 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
       },
       {
         label: "Desired Pension Pot",
-        data: Array(totalYears).fill(desiredPensionPot), 
+        data: Array(totalYears).fill(desiredPensionPot),
         fill: false,
         borderColor: "rgba(192,75,75,1)",
         tension: 0.1,
