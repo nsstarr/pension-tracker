@@ -1,6 +1,7 @@
 "use client";
 import { formatNumberToCommaString } from "@/utils/formatting";
 import { ChangeEvent, useState } from "react";
+import Tooltip from "./Tooltip"; // Import the Tooltip component
 
 export interface PensionData {
   annualIncome: number;
@@ -39,7 +40,6 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
     }));
   };
 
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
@@ -48,69 +48,112 @@ const PensionForm: React.FC<PensionFormProps> = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="grid max-w-md gap-6">
       <div>
-        <label className="mb-2 block">
+        <label
+          htmlFor="annualIncome"
+          className="mb-2 block font-medium text-gray-900 dark:text-white"
+        >
           Desired Annual Income in Retirement (£)
         </label>
-        <input
-          type="text"
-          name="annualIncome"
-          value={formatNumberToCommaString(formData.annualIncome)}
-          onChange={handleChange}
-          required
-          className="w-full rounded-lg border px-3 py-2 text-gray-900"
-          placeholder="e.g., 16,000"
-        />
+        <Tooltip content="The annual income you wish to receive after retirement.">
+          <input
+            type="text"
+            id="annualIncome"
+            name="annualIncome"
+            value={formatNumberToCommaString(formData.annualIncome)}
+            onChange={handleChange}
+            required
+            className="w-full rounded-lg border px-3 py-2 text-gray-900"
+            placeholder="e.g., 16,000"
+          />
+        </Tooltip>
       </div>
+
       <div>
-        <label className="mb-2 block">Employer Monthly Contribution (£)</label>
-        <input
-          type="text"
-          name="employerContribution"
-          value={formatNumberToCommaString(formData.employerContribution)}
-          onChange={handleChange}
-          required
-          className="w-full rounded-lg border px-3 py-2 text-gray-900"
-          placeholder="e.g., 500"
-        />
+        <label
+          htmlFor="employerContribution"
+          className="mb-2 block font-medium text-gray-900 dark:text-white"
+        >
+          Employer Monthly Contribution (£)
+        </label>
+        <Tooltip content="The amount your employer contributes monthly to your pension pot.">
+          <input
+            type="text"
+            id="employerContribution"
+            name="employerContribution"
+            value={formatNumberToCommaString(formData.employerContribution)}
+            onChange={handleChange}
+            required
+            className="w-full rounded-lg border px-3 py-2 text-gray-900"
+            placeholder="e.g., 500"
+          />
+        </Tooltip>
       </div>
+
       <div>
-        <label className="mb-2 block">Personal Monthly Contribution (£)</label>
-        <input
-          type="text"
-          name="personalContribution"
-          value={formatNumberToCommaString(formData.personalContribution)}
-          onChange={handleChange}
-          required
-          className="w-full rounded-lg border px-3 py-2 text-gray-900"
-          placeholder="e.g., 300"
-        />
+        <label
+          htmlFor="personalContribution"
+          className="mb-2 block font-medium text-gray-900 dark:text-white"
+        >
+          Personal Monthly Contribution (£)
+        </label>
+        <Tooltip content="The amount you contribute monthly to your pension pot.">
+          <input
+            type="text"
+            id="personalContribution"
+            name="personalContribution"
+            value={formatNumberToCommaString(formData.personalContribution)}
+            onChange={handleChange}
+            required
+            className="w-full rounded-lg border px-3 py-2 text-gray-900"
+            placeholder="e.g., 300"
+          />
+        </Tooltip>
       </div>
+
       <div>
-        <label className="mb-2 block">Age You Wish to Retire</label>
-        <input
-          type="text"
-          name="retirementAge"
-          value={formData.retirementAge.toString()}
-          onChange={handleChange}
-          required
-          className="w-full rounded-lg border px-3 py-2 text-gray-900"
-          placeholder="e.g., 65"
-        />
+        <label
+          htmlFor="retirementAge"
+          className="mb-2 block font-medium text-gray-900 dark:text-white"
+        >
+          Age You Wish to Retire
+        </label>
+        <Tooltip content="The age at which you plan to retire.">
+          <input
+            type="text"
+            id="retirementAge"
+            name="retirementAge"
+            value={formData.retirementAge.toString()}
+            onChange={handleChange}
+            required
+            className="w-full rounded-lg border px-3 py-2 text-gray-900"
+            placeholder="e.g., 65"
+          />
+        </Tooltip>
       </div>
+
       <div>
-        <label className="mb-2 block">Current Pension Pot</label>
-        <input
-          type="text"
-          name="currentPensionPot"
-          value={formatNumberToCommaString(formData.currentPensionPot)}
-          onChange={handleChange}
-          className="w-full rounded-lg border px-3 py-2 text-gray-900"
-          placeholder="e.g., 0"
-        />
+        <label
+          htmlFor="currentPensionPot"
+          className="mb-2 block font-medium text-gray-900 dark:text-white"
+        >
+          Current Pension Pot (£)
+        </label>
+        <Tooltip content="The current total amount saved in your pension pot.">
+          <input
+            type="text"
+            id="currentPensionPot"
+            name="currentPensionPot"
+            value={formatNumberToCommaString(formData.currentPensionPot)}
+            onChange={handleChange}
+            className="w-full rounded-lg border px-3 py-2 text-gray-900"
+            placeholder="e.g., 0"
+          />
+        </Tooltip>
       </div>
+
       <button
         type="submit"
-        className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+        className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
       >
         Calculate
       </button>
