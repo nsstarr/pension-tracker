@@ -37,7 +37,7 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     currentPensionPot,
   } = data || {};
 
-  // Total balance over time considering all contributions
+  // Total balance over time with all contributions
   const balanceOverTime = calculateBalance(
     retirementAge,
     employerContribution,
@@ -55,11 +55,13 @@ const ProjectionChart: React.FC<ProjectionChartProps> = ({ data }) => {
     currentPensionPot // Include only the current pension pot
   );
 
-  // Projected pension pot at retirement age
   const projectedPensionPot =
-    balanceOverTime[balanceOverTime.length - (END_AGE - retirementAge + 1)];
+    balanceOverTime?.[balanceOverTime.length - (END_AGE - retirementAge + 1)] ||
+    0;
 
-  const desiredPensionPot = annualIncome * (END_AGE - retirementAge);
+  const desiredPensionPot = annualIncome
+    ? annualIncome * (END_AGE - retirementAge)
+    : 0;
 
   const totalYears = END_AGE - JOB_START_AGE + 1;
 
