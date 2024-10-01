@@ -12,6 +12,8 @@ export function calculateBalance(
   const monthlySavings = employerContribution + personalContribution;
 
   let totalPensionPot = currentPensionPot;
+  
+  // balance of the pension pot for each year
   const balanceOverTime: number[] = [];
 
   // Accumulation phase
@@ -29,7 +31,7 @@ export function calculateBalance(
     totalPensionPot -= annualIncome; // Withdraw annual income
 
     if (totalPensionPot <= 0) {
-      balanceOverTime.push(0);
+      balanceOverTime.push(0); // Zero balance if the pension pot is depleted
       break;
     }
   }
